@@ -34,6 +34,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.cupcake.ui.OrderViewModel
 
+enum class CupcakeScreen {
+    Start,
+    Flavor,
+    Pickup,
+    Summary
+}
+
 /**
  * Composable that displays the topBar and displays back button if back navigation is possible.
  */
