@@ -48,6 +48,54 @@ class CupcakeScreenNavigationTest {
         composeTestRule.onNodeWithStringId(R.string.one_cupcake).performClick()
         navController.assertCurrentRouteName(CupcakeScreen.Flavor.name)
     }
+    // Navigating to the Start screen by clicking the Up button from the Flavor screen
+    @Test
+    fun cupcakeNavHost_clickUpButtonOnFlavorScreen_navigateToStartScreen() {
+        navigateToFlavorScreen()
+        performNavigateUp()
+        navController.assertCurrentRouteName(CupcakeScreen.Start.name)
+    }
+    // Navigating to the Start screen by clicking the Cancel button from the Flavor screen
+    @Test
+    fun cupcakeNavHost_clickingCancelButtonOnFlavorScreen_navigateToStartScreen() {
+        navigateToFlavorScreen()
+        performClickingCancelButton()
+        navController.assertCurrentRouteName(CupcakeScreen.Start.name)
+    }
+    // Navigating to the Pickup screen
+    @Test
+    fun cupcakeNavHost_verifyNavigatingToPickupScreen() {
+        navigateToPickupScreen()
+        navController.assertCurrentRouteName(CupcakeScreen.Pickup.name)
+    }
+    // Navigating to the Flavor screen by clicking the Up button from the Pickup screen
+    @Test
+    fun cupcakeNavHost_clickUpButtonOnPickupScreen_navigateToFlavorScreen() {
+        navigateToPickupScreen()
+        performNavigateUp()
+        navController.assertCurrentRouteName(CupcakeScreen.Flavor.name)
+
+    }
+    // Navigating to the Start screen by clicking the Cancel button from the Pickup screen
+    @Test
+    fun cupcakeNavHost_clickCancelButtonOnPickupScreen_navigateToStartScreen() {
+        navigateToPickupScreen()
+        performClickingCancelButton()
+        navController.assertCurrentRouteName(CupcakeScreen.Start.name)
+    }
+    // Navigating to the Summary screen
+    @Test
+    fun cupcakeNavHost_verifyNavigatingToSummaryScreen() {
+        navigateToSummaryScreen()
+        navController.assertCurrentRouteName(CupcakeScreen.Summary.name)
+    }
+    // Navigating to the Start screen by clicking the Cancel button from the Summary screen
+    @Test
+    fun cupcakeNavHost_clickCancelButtonOnSummaryScreen_navigateToStartScreen() {
+        navigateToSummaryScreen()
+        performClickingCancelButton()
+        navController.assertCurrentRouteName(CupcakeScreen.Start.name)
+    }
     private fun navigateToFlavorScreen() {
         composeTestRule.onNodeWithStringId(R.string.one_cupcake).performClick()
         composeTestRule.onNodeWithStringId(R.string.chocolate).performClick()
@@ -74,5 +122,9 @@ class CupcakeScreenNavigationTest {
     private fun performNavigateUp() {
         val backText = composeTestRule.activity.getString(R.string.back_button)
         composeTestRule.onNodeWithContentDescription(backText).performClick()
+    }
+    private fun performClickingCancelButton() {
+        val cancelText = composeTestRule.activity.getString(R.string.cancel)
+        composeTestRule.onNodeWithText(cancelText).performClick()
     }
 }
